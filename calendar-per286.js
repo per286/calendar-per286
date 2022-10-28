@@ -49,7 +49,8 @@ function createCalendar(lang = "es", firstDay = "Monday"){
   let months = monthsByLang[lang];
   let days = daysByLang[lang];
   
-  let index = days.findIndex(day => day === firstDay);
+  let index = days.findIndex(day => day.toLowerCase() === firstDay.toLowerCase());
+      index = index == -1 ? 0 : index;
   for(let i = index; i < (days.length + index); i++){
     j = i > 6 ? i - 7 : i;
     let dayy = document.createElement("div");
@@ -68,11 +69,11 @@ function createCalendar(lang = "es", firstDay = "Monday"){
   
   let today = new Date();
   let day = today.getDate();
-  let actualDay = today.getDate();
+  const actualDay = today.getDate();
   let month = today.getMonth();
-  let actualMonth = today.getMonth();
+  const actualMonth = today.getMonth();
   let year = today.getYear();
-  let actualYear = today.getYear();
+  const actualYear = today.getYear();
   
   lblMonth.innerHTML = months[month];
   lblYear.innerHTML = year;
