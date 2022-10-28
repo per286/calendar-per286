@@ -50,7 +50,10 @@ function createCalendar(lang = "es", firstDay = "Monday"){
   let days = daysByLang[lang];
   
   let index = days.findIndex(day => day.toLowerCase() === firstDay.toLowerCase());
-      index = index == -1 ? 0 : index;
+  if(index == -1) {
+    index = daysByLang["en"].findIndex(day => day.toLowerCase() === firstDay.toLowerCase());
+  }
+  index = index == -1 ? 0 : index;
   for(let i = index; i < (days.length + index); i++){
     j = i > 6 ? i - 7 : i;
     let dayy = document.createElement("div");
